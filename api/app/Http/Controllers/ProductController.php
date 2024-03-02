@@ -63,7 +63,6 @@ class ProductController extends Controller
         $categories = $this->categoryService->findAll();
         $selected = [];
         $images = $product->images;
-
         if (!empty($product->categories)) {
             foreach ($product->categories as $category) {
                 $selected[] = $category->pivot->category_id;
@@ -121,7 +120,7 @@ class ProductController extends Controller
      */
     public function api(): JsonResponse
     {
-        $categories = $this->productService->findAll();
-        return response()->json($categories);
+        $products = $this->productService->index();
+        return response()->json($products);
     }
 }
